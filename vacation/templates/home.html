@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% load staticfiles %}
+{% block content %}
+    <ul class="media-list">
+        <li class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object" src="{% static 'images/icon_vacation.png' %}" alt="Ask vac">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading"><a href="#">{% trans 'Ask for vacation' %}</a></h4>
+            </div>
+        <li class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object" src="{% static 'images/icon_recup.png' %}" alt="Ask recup">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading"><a href="#">{% trans 'Ask for recuparation' %}</a></h4>
+            </div>
+    </ul>
+{% endblock %}
