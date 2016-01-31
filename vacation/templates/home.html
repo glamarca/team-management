@@ -1,24 +1,92 @@
-{% extends "layout.html" %}
+{% extends "vacation_layout.html" %}
 {% load staticfiles %}
+{% load i18n %}
+{% block breadcrumb %}
+    /<a href="#">{% trans 'Vacation' %}</a>
+{% endblock %}
 {% block content %}
-    <ul class="media-list">
-        <li class="media">
-            <div class="media-left">
-                <a href="#">
-                    <img class="media-object" src="{% static 'images/icon_vacation.png' %}" alt="Ask vac">
-                </a>
+    {% include 'messages.html' %}
+
+    <div class="container" style="margin-top: 50px">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li role="presentation"><a href="#" class="list-group-item"
+                                                       id="ask_vacation_id">{% trans 'Ask for vacation' %}</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="media-body">
-                <h4 class="media-heading"><a href="#">{% trans 'Ask for vacation' %}</a></h4>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li role="presentation"><a href="#" class="list-group-item"
+                                                       id="ask_recuperation_id">{% trans 'Ask for recuperation' %}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        <li class="media">
-            <div class="media-left">
-                <a href="#">
-                    <img class="media-object" src="{% static 'images/icon_recup.png' %}" alt="Ask recup">
-                </a>
+        </div>
+    </div>
+    {% if last_demands_status %}
+        <div class="panel panel-default">
+            <div class="panel panel-heading">{% trans 'Laste demands' %}</div>
+            <div class="panel panel-body">
+                <table class="table table-hover table-responsive">
+                    <thead>
+                    <tr>
+                        <th>{% trans 'Vacation Type' %}</th>
+                        <th>{% trans 'Encoding date' %}</th>
+                        <th>{% trans 'Starting date' %}</th>
+                        <th>{% trans 'Ending date' %}</th>
+                        <th>{% trans 'Amount of days' %}</th>
+                        <th>{% trans 'Demand status' %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for demand_status in last_demands_statuses %}
+                        <tr>
+                            <td><a href="#">{{ demand_status.demand.vacation_type }}</a></td>
+                            <td>{{ demand_status.demand.encoding_date }}</td>
+                            <td>{{ demand_status.demand.first_day }}</td>
+                            <td>{{ demand_status.demand.amount_of_days }}</td>
+                            <td>{{ demand_status.status }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
-            <div class="media-body">
-                <h4 class="media-heading"><a href="#">{% trans 'Ask for recuparation' %}</a></h4>
+        </div>
+    {% endif %}
+    {% if tasks %}
+        <div class="panel panel-default">
+            <div class="panel panel-heading">{% trans 'Tasks' %}</div>
+            <div class="panel panel-body">
+                <table class="table table-hover table-responsive">
+                    <thead>
+                    <tr>
+                        <th>{% trans 'Task Type' %}</th>
+                        <th>{% trans 'Person' %}</th>
+                        <th>{% trans 'Demand' %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for task in tasks %}
+                        <tr>
+                            <td>{{ task.task_type }}</td>
+                            <td>{{ task.person.first_name }}</td>
+                            <td><a href="#">{{ demand_status.demand.vacation_type }}</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
-    </ul>
+        </div>
+    {% endif %}
 {% endblock %}

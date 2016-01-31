@@ -1,0 +1,47 @@
+{% extends "vacation_layout.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block breadcrumb %}
+    /<a href="{% url 'vacation:home' %}">{% trans 'Vacation' %}</a>
+{% endblock %}
+{% block content %}
+    <h1>{% if action == 'modify' %}{% trans 'Vacation demand modification' %}{% else %}
+        {% trans 'New vacation demand' %}{% endif %}</h1>
+    <div class="container">
+        {% include 'messages.html' %}
+        <form action="{% url 'vacation:post_demand' %}" id="demand_form" method="post">
+            {% csrf_token %}
+            {% if deamand %}
+                <input type="hidden" name="id" value="{{ demand.id }}"/>
+            {% endif %}
+            <div class="row">
+                <input type="hidden" value="{{ action }}" name="action"/>
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="first_day" class="control-label">{% trans 'First day' %}</label>
+                            <input type="text" class="form-control" id="first_day" name="first_day"
+                                   {% if demand %}value="{{ demand.first_day }}"{% endif %}/>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="last_day" class="control-label">{% trans 'Last day' %}</label>
+                            <input type="text" class="form-control" id="last_day" name="last_day"
+                                   {% if demand %}value="{{ demand.last_day }}"{% endif %}/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="number_of_days" class="control-label">{% trans 'Number of days' %}</label>
+                            <input type="text" class="form-control" id="number_of_days" name="number_of_days"
+                                   {% if demand %}value="{{ demand.amount_of_days }}"{% endif %}/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
