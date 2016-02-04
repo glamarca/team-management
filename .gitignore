@@ -3,6 +3,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+team_management/__pycache__/
+team_management/__pycache__/*
 
 # C extensions
 *.so
