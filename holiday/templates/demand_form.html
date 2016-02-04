@@ -1,15 +1,15 @@
-{% extends "vacation_layout.html" %}
+{% extends "holiday_layout.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% block breadcrumb %}
-    /<a href="{% url 'vacation:home' %}">{% trans 'Vacation' %}</a>
+    /<a href="{% url 'holiday:home' %}">{% trans 'holiday' %}</a>
 {% endblock %}
 {% block content %}
-    <h1>{% if action == 'modify' %}{% trans 'Vacation demand modification' %}{% else %}
-        {% trans 'New vacation demand' %}{% endif %}</h1>
+    <h1>{% if action == 'modify' %}{% trans 'holiday demand modification' %}{% else %}
+        {% trans 'New holiday demand' %}{% endif %}</h1>
     <div class="container">
         {% include 'messages.html' %}
-        <form action="{% url 'vacation:post_demand' %}" id="demand_form" method="post">
+        <form action="{% url 'holiday:post_demand' %}" id="demand_form" method="post">
             {% csrf_token %}
             {% if deamand %}
                 <input type="hidden" name="id" value="{{ demand.id }}"/>

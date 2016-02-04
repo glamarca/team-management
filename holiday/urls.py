@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.contrib.auth.views import login, logout
 
-app_name = "vacation"
+app_name = "holiday"
 
 from . import views
 

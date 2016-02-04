@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from vacation.models import Vacation, Demand, Task, DemandStatus, Person, AccountStatus
+from holiday.models import Holiday, Demand, Task, DemandStatus, Person, AccountStatus
 from django.utils.translation import ugettext as _
 
 
@@ -18,14 +18,14 @@ def home(request):
         if not account_status :
             account_status = AccountStatus(person=person,status='I')
             account_status.save()
-        vacations=[]
+        holidays=[]
         last_demands_statuses=[]
         tasks=[]
         if account_status != "I" :
-            vacations = Vacation.objects.filter(person=person)
+            holidays = Holiday.objects.filter(person=person)
             last_demands_statuses = DemandStatus.objects.filter(person=person).order_by('-encoding_date')[:5]
         context = {
-            'vacations' : vacations,
+            'holidays' : holidays,
             'last_demands_statuses' : last_demands_statuses,
             'person' : person,
             'tasks' : tasks
@@ -36,7 +36,7 @@ def home(request):
         context = {'error_messages' : error_messages}
     return render(request, "home.html",context)
 
-def ask_vacation(request,person_id):
+def ask_holiday(request,person_id):
     try :
         person = Person.objects.get(pk=person_id)
     except :

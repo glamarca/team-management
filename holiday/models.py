@@ -3,7 +3,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils import timezone
 
-VACATION_TYPES = (
+HOLIDAY_TYPES = (
     ('L', 'Legal'),
     ('C', 'Compensation'),
     ('R', 'Recuperation'),
@@ -16,9 +16,9 @@ class Person(models.Model):
     last_name = models.CharField(max_length = 50, blank = False, null = False)
     user = models.OneToOneField(User,on_delete=models.CASCADE)
 
-class Vacation(models.Model):
+class Holiday(models.Model):
     person = models.ForeignKey(Person, null = False,on_delete=models.CASCADE,blank=False)
-    vacation_type = models.CharField(max_length = 1, blank = False, null = False, choices = VACATION_TYPES, default = 'L')
+    holiday_type = models.CharField(max_length = 1, blank = False, null = False, choices = HOLIDAY_TYPES, default = 'L')
     amount_of_days = models.IntegerField(blank=False, null=False)
 
 class AccountStatus(models.Model):
@@ -33,7 +33,7 @@ class AccountStatus(models.Model):
 
 class Demand(models.Model):
     person = models.ForeignKey(Person, null = False,on_delete=models.CASCADE,blank=False)
-    vacation_type = models.CharField(max_length = 1, blank = False, null = False, choices = VACATION_TYPES, default = 'L')
+    holiday_type = models.CharField(max_length = 1, blank = False, null = False, choices = HOLIDAY_TYPES, default = 'L')
     amount_of_days = models.IntegerField(blank=False, null=False)
     first_day = models.DateTimeField(null=False)
     last_day = models.DateTimeField(null=False)

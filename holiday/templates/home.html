@@ -1,8 +1,8 @@
-{% extends "vacation_layout.html" %}
+{% extends "holiday_layout.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% block breadcrumb %}
-    /<a href="#">{% trans 'Vacation' %}</a>
+    /<a href="#">{% trans 'holiday' %}</a>
 {% endblock %}
 {% block content %}
     {% include 'messages.html' %}
@@ -14,7 +14,7 @@
                     <div class="panel-body">
                         <ul class="nav nav-pills nav-stacked">
                             <li role="presentation"><a href="#" class="list-group-item"
-                                                       id="ask_vacation_id">{% trans 'Ask for vacation' %}</a></li>
+                                                       id="ask_holiday_id">{% trans 'Ask for holiday' %}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                 <table class="table table-hover table-responsive">
                     <thead>
                     <tr>
-                        <th>{% trans 'Vacation Type' %}</th>
+                        <th>{% trans 'holiday Type' %}</th>
                         <th>{% trans 'Encoding date' %}</th>
                         <th>{% trans 'Starting date' %}</th>
                         <th>{% trans 'Ending date' %}</th>
@@ -52,7 +52,7 @@
                     <tbody>
                     {% for demand_status in last_demands_statuses %}
                         <tr>
-                            <td><a href="#">{{ demand_status.demand.vacation_type }}</a></td>
+                            <td><a href="#">{{ demand_status.demand.holiday_type }}</a></td>
                             <td>{{ demand_status.demand.encoding_date }}</td>
                             <td>{{ demand_status.demand.first_day }}</td>
                             <td>{{ demand_status.demand.amount_of_days }}</td>
@@ -81,7 +81,7 @@
                         <tr>
                             <td>{{ task.task_type }}</td>
                             <td>{{ task.person.first_name }}</td>
-                            <td><a href="#">{{ demand_status.demand.vacation_type }}</a></td>
+                            <td><a href="#">{{ demand_status.demand.holiday_type }}</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>

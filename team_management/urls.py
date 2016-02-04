@@ -21,6 +21,6 @@ from team_management import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^authentication/',include('authentication.urls')),
-    url(r'^vacation/',include('vacation.urls')),
+    url(r'^holiday/',include('holiday.urls')),
     url(r'^$',views.index,name="index")
 ]

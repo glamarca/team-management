@@ -1,1 +1,10 @@
 = Team Management
+This application is meant to help manage team. +
+It wa writen originally to manage IT team , but it's not limited. +
+
+Different modules have to be added , targetting different goals.
+
+== Modules
+
+=== Holiday management
+Manage the

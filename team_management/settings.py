@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authentication.apps.AuthenticationConfig',
-    'vacation.apps.VacationConfig',
+    'holiday.apps.HolidayConfig',
 ]
 
 MIDDLEWARE_CLASSES = [

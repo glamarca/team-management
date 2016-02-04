@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
             name='Demand',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('vacation_type', models.CharField(choices=[('L', 'Legal'), ('C', 'Compensation'), ('R', 'Recuperation'), ('X', 'Exceptional')], default='L', max_length=1)),
+                ('holiday_type', models.CharField(choices=[('L', 'Legal'), ('C', 'Compensation'), ('R', 'Recuperation'), ('X', 'Exceptional')], default='L', max_length=1)),
                 ('amount_of_days', models.IntegerField()),
                 ('first_day', models.DateTimeField()),
                 ('last_day', models.DateTimeField()),
@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
                 ('motivation', models.CharField(blank=True, max_length=255, null=True)),
                 ('encoding_date', models.DateTimeField(default=models.DateTimeField(default=django.utils.timezone.now))),
                 ('encoding_user', models.CharField(max_length=255)),
-                ('demand', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='vacation.Demand')),
+                ('demand', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='holiday.Demand')),
             ],
         ),
         migrations.CreateModel(
@@ -59,32 +59,32 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('task_type', models.CharField(choices=[('V', 'Validate demand'), ('A', 'Activate User')], default='V', max_length=1)),
-                ('demand', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='vacation.Demand')),
-                ('person', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='vacation.Person')),
+                ('demand', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='holiday.Demand')),
+                ('person', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='holiday.Person')),
             ],
         ),
         migrations.CreateModel(
-            name='Vacation',
+            name='holiday',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('vacation_type', models.CharField(choices=[('L', 'Legal'), ('C', 'Compensation'), ('R', 'Recuperation'), ('X', 'Exceptional')], default='L', max_length=1)),
+                ('holiday_type', models.CharField(choices=[('L', 'Legal'), ('C', 'Compensation'), ('R', 'Recuperation'), ('X', 'Exceptional')], default='L', max_length=1)),
                 ('amount_of_days', models.IntegerField()),
-                ('person', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='vacation.Person')),
+                ('person', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='holiday.Person')),
             ],
         ),
         migrations.AddField(
             model_name='demandstatus',
             name='person',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='vacation.Person'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='holiday.Person'),
         ),
         migrations.AddField(
             model_name='demand',
             name='person',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='vacation.Person'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='holiday.Person'),
         ),
         migrations.AddField(
             model_name='accountstatus',
             name='person',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='vacation.Person'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='holiday.Person'),
         ),
     ]
